@@ -34,7 +34,7 @@ class App extends Component {
         <Body>
           <h1 style={{ fontSize: "1rem" }}>More Coming Soon!</h1>
           <br />
-          <p>Da Tribe Times provides a platform to list events and details for people to gather and enjoy good people,
+          <p>Da Tribe Times provides a platform to list events and details to gather and enjoy good people,
             good vibes, good music, and good food. Please visit us frequently to stay up to date and join us!</p>
         </Body>
       </Container>
