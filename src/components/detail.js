@@ -1,45 +1,15 @@
 import React, { Component } from "react";
 import moment from "moment";
-import styled from "styled-components";
-
-const Container = styled.div`
-  background: #f2d2a9;
-  border-radius: 5px;
-  display: flex;
-  height: 75vh;
-  flex-wrap: wrap;
-  margin: 15px auto;
-  padding: 15px;
-  text-align: start;
-  width: 768px;
-`;
-const Title = styled.h1`
-  font-size: 1.5rem;
-  font-weight: bold;
-  height: 5%;
-  margin-bottom: 10px;
-  width: 100%;
-`;
-const Sub = styled.h1`
-  font-size: 1rem;
-  font-style: italic;
-  margin-bottom: 10px;
-  width: 100%;
-  &:last-child {
-    margin-bottom: 0px;
-  }
-`;
-const Sidebar = styled.div`
-  height: 94%;
-  width: 35%;
-`;
-const TextArea = styled.textarea`
-  font-size: 1rem;
-  margin-left: 2%;
-  outline: none;
-  resize: none;
-  width: 62%;
-`;
+import {
+  Container,
+  Title,
+  Sub,
+  Sidebar,
+  Button,
+  Aa,
+  TextArea,
+  ListItem
+} from "../styledComponents/detail";
 
 class Detail extends Component {
   constructor(props) {
@@ -62,7 +32,35 @@ class Detail extends Component {
             {moment(this.state.event.date).format("ddd M/D/YYYY - h:mm a")}
           </Sub>
           <Sub>{this.state.event.location}</Sub>
-          <Sub>{this.state.event.creator}</Sub>
+          <Sub>Host: {this.state.event.creator}</Sub>
+          <Sub>Attendees:</Sub>
+          {!this.state.event.attendees ? (
+            <ListItem type="circle">None</ListItem>
+          ) : (
+            this.state.event.attendees.map(attendee => {
+              return <ListItem type="circle">{attendee}</ListItem>;
+            })
+          )}
+          {!this.state.event.moreurl ? null : (
+            <Button>
+              <Aa
+                href={this.state.event.moreurl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                More Info
+              </Aa>
+            </Button>
+          )}
+          <Button>
+            <Aa
+              href={this.state.event.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join this Tribe
+            </Aa>
+          </Button>
         </Sidebar>
         <TextArea
           disabled

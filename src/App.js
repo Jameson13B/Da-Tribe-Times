@@ -1,31 +1,9 @@
 import React from "react";
-import styled from "styled-components";
+import { Container, Header, Title, Body } from "./styledComponents/App";
 import { Route } from "react-router-dom";
 import Summary from "./components/summary";
 import Detail from "./components/detail";
 import firebase from "./Firestore";
-
-const Container = styled.div``;
-const Header = styled.header`
-  background-color: #572900;
-  min-height: 3rem;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-`;
-const Title = styled.h1`
-  font-size: 2rem;
-`;
-
-const Body = styled.div`
-  max-width: 768px;
-  margin: 0 auto;
-  padding: 15px 0;
-  text-align: center;
-`;
 
 class App extends React.Component {
   constructor() {
@@ -83,3 +61,8 @@ class App extends React.Component {
 }
 
 export default App;
+
+// Create user accounts
+// When user Joins Tribe add as attendee
+// Form to create event
+// Form to edit event
