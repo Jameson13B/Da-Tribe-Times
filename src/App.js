@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Route } from "react-router-dom";
 import Summary from "./components/summary";
+import Detail from "./components/detail";
 import firebase from "./Firestore";
 
 const Container = styled.div``;
@@ -29,13 +31,12 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      events: ["Event 1", "Event 2"],
+      events: [],
       user: {}
     };
   }
   componentDidMount() {
     const db = firebase.firestore();
-    db.settings({ timestampsInSnapshots: true });
     db.collection("events")
       .get()
       .then(res => {
@@ -46,6 +47,15 @@ class App extends React.Component {
         this.setState({ events });
       });
   }
+  renderList = () => {
+    return !this.state.events.length ? (
+      <p>No Events At This Time</p>
+    ) : (
+      this.state.events.map((event, i) => {
+        return <Summary event={event} index={i} key={i} />;
+      })
+    );
+  };
   render() {
     return (
       <Container className="App">
@@ -60,14 +70,12 @@ class App extends React.Component {
             Please visit us frequently to stay up to date and join us!
           </p>
           <br />
-          {!this.state.events.length ? (
-            <p>No Events At This Time</p>
-          ) : (
-            this.state.events.map(event => {
-              return <Summary event={event} />;
-            })
-          )}
-          <h1 style={{ fontSize: "1rem" }}>More Coming Soon!</h1>
+
+          <Route exact path="/" component={this.renderList} />
+          <Route
+            path="/event/:id"
+            render={props => <Detail {...props} event={this.state.events} />}
+          />
         </Body>
       </Container>
     );
