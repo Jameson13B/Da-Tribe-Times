@@ -34,7 +34,10 @@ const Sidebar = styled.div`
   width: 35%;
 `;
 const TextArea = styled.textarea`
+  font-size: 1rem;
   margin-left: 2%;
+  outline: none;
+  resize: none;
   width: 62%;
 `;
 
@@ -61,7 +64,11 @@ class Detail extends Component {
           <Sub>{this.state.event.location}</Sub>
           <Sub>{this.state.event.creator}</Sub>
         </Sidebar>
-        <TextArea />
+        <TextArea
+          disabled
+          placeholder="No description for this event."
+          value={this.state.event.description}
+        />
       </Container>
     );
   }
