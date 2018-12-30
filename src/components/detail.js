@@ -15,7 +15,9 @@ class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: {}
+      event: {},
+      desc:
+        "<div>Hello World!</div><div>PrimeReact <b>Editor</b> Rocks</div><div><br></div>"
     };
   }
   componentDidMount() {
@@ -23,7 +25,13 @@ class Detail extends Component {
     const event = this.props.event[id];
     this.setState({ event });
   }
+  handleInputChange = e => {
+    const event = this.state.event;
+    event.description = e.htmlValue;
+    this.setState({ event });
+  };
   render() {
+    const desc = this.state.event.description;
     return (
       <Container className="Detail">
         <Title>{this.state.event.title}</Title>
@@ -63,9 +71,9 @@ class Detail extends Component {
           </Button>
         </Sidebar>
         <TextArea
-          disabled
-          placeholder="No description for this event."
+          readonly
           value={this.state.event.description}
+          onTextChange={this.handleInputChange}
         />
       </Container>
     );

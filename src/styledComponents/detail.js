@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Editor } from "primereact/editor";
 
 export const Container = styled.div`
   background: #f2d2a9;
@@ -48,10 +49,9 @@ export const Aa = styled.a`
   text-decoration: none;
   width: 100%;
 `;
-export const TextArea = styled.textarea`
+export const TextArea = styled(Editor)`
   font-size: 1rem;
+  height: 85%;
   margin-left: 2%;
-  outline: none;
-  resize: none;
   width: 62%;
 `;
