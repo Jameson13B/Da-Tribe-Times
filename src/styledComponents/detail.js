@@ -51,7 +51,7 @@ export const Aa = styled.a`
 `;
 export const TextArea = styled(ReactQuill)`
   font-size: 1rem;
-  height: 85%;
+  height: 80%;
   margin-left: 2%;
   width: 62%;
 `;

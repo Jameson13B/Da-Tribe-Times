@@ -10,7 +10,28 @@ import {
   TextArea,
   ListItem
 } from "../styledComponents/detail";
-import "react-quill/dist/quill.bubble.css";
+import "react-quill/dist/quill.snow.css";
+
+const formats = [
+  "header",
+  "font",
+  "bold",
+  "italics",
+  "underline",
+  "list",
+  "bullet",
+  "link",
+  "image",
+  "video"
+];
+const modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, { font: [] }],
+    ["bold", "italic", "underline"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["link", "image", "video"]
+  ]
+};
 
 class Detail extends Component {
   constructor(props) {
@@ -65,7 +86,9 @@ class Detail extends Component {
         /> */}
         <TextArea
           readOnly
-          theme="bubble"
+          formats={formats}
+          modules={modules}
+          placeholder="No description for this event yet. Check back soon."
           value={this.state.description}
           onChange={this.handleInputChange}
         />
