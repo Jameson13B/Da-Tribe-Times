@@ -80,10 +80,6 @@ class Detail extends Component {
             </Aa>
           </Button>
         </Sidebar>
-        {/* <TextArea
-          value={this.state.description}
-          onTextChange={this.handleInputChange}
-        /> */}
         <TextArea
           readOnly
           formats={formats}

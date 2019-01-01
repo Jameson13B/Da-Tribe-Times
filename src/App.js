@@ -66,3 +66,4 @@ export default App;
 // When user Joins Tribe add as attendee
 // Form to create event
 // Form to edit event
+// Bold and Italics dont work on editor
