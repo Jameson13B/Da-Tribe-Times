@@ -10,49 +10,42 @@ import {
   TextArea,
   ListItem
 } from "../styledComponents/detail";
+import "react-quill/dist/quill.bubble.css";
 
 class Detail extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      event: {},
-      desc:
-        "<div>Hello World!</div><div>PrimeReact <b>Editor</b> Rocks</div><div><br></div>"
-    };
+    this.state = {};
   }
-  componentDidMount() {
+  componentWillMount() {
     const id = this.props.match.params.id;
     const event = this.props.event[id];
-    this.setState({ event });
+    console.log("Event: ", event);
+    this.setState(event);
   }
-  handleInputChange = e => {
-    const event = this.state.event;
-    event.description = e.htmlValue;
-    this.setState({ event });
+  handleInputChange = value => {
+    this.setState({ description: value });
   };
   render() {
-    const desc = this.state.event.description;
     return (
       <Container className="Detail">
-        <Title>{this.state.event.title}</Title>
+        <Title>{this.state.title}</Title>
         <Sidebar>
-          <Sub>
-            {moment(this.state.event.date).format("ddd M/D/YYYY - h:mm a")}
-          </Sub>
-          <Sub>{this.state.event.location}</Sub>
-          <Sub>Host: {this.state.event.creator}</Sub>
+          <Sub>{moment(this.state.date).format("ddd M/D/YYYY - h:mm a")}</Sub>
+          <Sub>{this.state.location}</Sub>
+          <Sub>Host: {this.state.creator}</Sub>
           <Sub>Attendees:</Sub>
-          {!this.state.event.attendees ? (
+          {!this.state.attendees ? (
             <ListItem type="circle">None</ListItem>
           ) : (
-            this.state.event.attendees.map(attendee => {
+            this.state.attendees.map(attendee => {
               return <ListItem type="circle">{attendee}</ListItem>;
             })
           )}
-          {!this.state.event.moreurl ? null : (
+          {!this.state.moreurl ? null : (
             <Button>
               <Aa
-                href={this.state.event.moreurl}
+                href={this.state.moreurl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -61,19 +54,20 @@ class Detail extends Component {
             </Button>
           )}
           <Button>
-            <Aa
-              href={this.state.event.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Aa href={this.state.url} target="_blank" rel="noopener noreferrer">
               Join this Tribe
             </Aa>
           </Button>
         </Sidebar>
-        <TextArea
-          readonly
-          value={this.state.event.description}
+        {/* <TextArea
+          value={this.state.description}
           onTextChange={this.handleInputChange}
+        /> */}
+        <TextArea
+          readOnly
+          theme="bubble"
+          value={this.state.description}
+          onChange={this.handleInputChange}
         />
       </Container>
     );

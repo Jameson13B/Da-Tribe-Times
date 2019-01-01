@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Editor } from "primereact/editor";
+import ReactQuill from "react-quill";
 
 export const Container = styled.div`
   background: #f2d2a9;
@@ -49,7 +49,7 @@ export const Aa = styled.a`
   text-decoration: none;
   width: 100%;
 `;
-export const TextArea = styled(Editor)`
+export const TextArea = styled(ReactQuill)`
   font-size: 1rem;
   height: 85%;
   margin-left: 2%;
