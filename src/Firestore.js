@@ -8,6 +8,9 @@ const config = {
   storageBucket: "da-tribe-time.appspot.com",
   messagingSenderId: "905795799121"
 };
+
 firebase.initializeApp(config);
 
+export const provider = new firebase.auth.GoogleAuthProvider();
+export const auth = firebase.auth();
 export default firebase;
