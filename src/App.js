@@ -1,20 +1,26 @@
 import React from "react";
 import { Container, Header, Title, Body } from "./styledComponents/App";
+import { ProfileImg } from "./styledComponents/App";
 import { Route } from "react-router-dom";
 import Summary from "./components/summary";
 import Detail from "./components/detail";
 import Create from "./components/create";
-import firebase from "./Firestore";
+import firebase, { auth, provider } from "./Firestore";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       events: [],
-      user: {}
+      user: null
     };
   }
   componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
     const db = firebase.firestore();
     db.collection("events")
       .get()
@@ -35,13 +41,30 @@ class App extends React.Component {
       })
     );
   };
+  login = () => {
+    auth.signInWithPopup(provider).then(result => {
+      const user = result.user;
+      this.setState({ user });
+    });
+  };
+  logout = () => {
+    auth.signOut().then(() => {
+      this.setState({ user: null });
+    });
+  };
   render() {
+    console.log(this.state.user);
+    console.log(this.state.user);
     return (
       <Container className="App">
         <Header className="App-header">
           <a href="/create">+</a>
           <Title>Da Tribe Times</Title>
-          <a href="/">Login</a>
+          {this.state.user ? (
+            <button onClick={this.logout}>Logout</button>
+          ) : (
+            <button onClick={this.login}>Login</button>
+          )}
         </Header>
         <Body>
           <br />
@@ -59,6 +82,9 @@ class App extends React.Component {
             render={props => <Detail {...props} event={this.state.events} />}
           />
         </Body>
+        {this.state.user ? (
+          <ProfileImg src={this.state.user.photoURL} alt="user-profile" />
+        ) : null}
       </Container>
     );
   }

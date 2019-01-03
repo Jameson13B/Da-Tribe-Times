@@ -21,3 +21,13 @@ export const Body = styled.div`
   padding: 15px 0;
   text-align: center;
 `;
+
+export const ProfileImg = styled.img`
+  border-radius: 50%;
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  width: 100px;
+  height: 100px;
+  max-width: 100%;
+`;
