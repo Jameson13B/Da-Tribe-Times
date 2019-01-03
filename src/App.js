@@ -1,6 +1,12 @@
 import React from "react";
-import { Container, Header, Title, Body } from "./styledComponents/App";
-import { ProfileImg } from "./styledComponents/App";
+import {
+  Container,
+  Header,
+  Title,
+  Body,
+  ProfileImg,
+  SignInButton
+} from "./styledComponents/app";
 import { Route } from "react-router-dom";
 import Summary from "./components/summary";
 import Detail from "./components/detail";
@@ -56,9 +62,8 @@ class App extends React.Component {
     return (
       <Container className="App">
         <Header className="App-header">
-          <a href="/create">+</a>
           <Title>Da Tribe Times</Title>
-          null
+          <a href="/create">+</a>
         </Header>
         <Body>
           <br />
@@ -88,14 +93,13 @@ class App extends React.Component {
             }}
           />
         ) : (
-          <button onClick={this.login}>
+          <SignInButton onClick={this.login}>
             <img
-              style={{ height: "15px", width: "15px" }}
-              alt=""
+              alt="google_logo"
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
             />
-            <span>Sign in with Google</span>
-          </button>
+            <p>Sign in with Google</p>
+          </SignInButton>
         )}
       </Container>
     );
@@ -104,7 +108,6 @@ class App extends React.Component {
 
 export default App;
 
-// Create user accounts
 // When user Joins Tribe add as attendee
 // Form to create event
 // Form to edit event

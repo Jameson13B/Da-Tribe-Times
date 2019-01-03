@@ -24,10 +24,27 @@ export const Body = styled.div`
 
 export const ProfileImg = styled.img`
   border-radius: 50%;
+  cursor: pointer;
   position: fixed;
-  bottom: 20px;
-  right: 40px;
-  width: 100px;
-  height: 100px;
+  bottom: 15px;
+  right: 15px;
+  width: 90px;
+  height: 90px;
   max-width: 100%;
+`;
+export const SignInButton = styled.button`
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.75rem;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 90px;
+  height: 90px;
+  max-width: 100%;
+  img {
+    height: 20px;
+    margin-bottom: 5px;
+    width: 20px;
+  }
 `;
