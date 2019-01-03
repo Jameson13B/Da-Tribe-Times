@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import ReactQuill from "react-quill";
-// import { DateTimePicker } from "material-ui-pickers";
 import Datetime from "react-datetime";
 
 export const Container = styled.div`

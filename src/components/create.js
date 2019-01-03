@@ -12,6 +12,7 @@ import {
 } from "../styledComponents/create";
 import "react-quill/dist/quill.snow.css";
 import "../styledComponents/react-datetime.css";
+import { auth } from "../Firestore";
 
 const formats = [
   "header",
@@ -43,10 +44,17 @@ class Create extends Component {
       location: "",
       url: "",
       moreUrl: "",
-      description: ""
+      description: "",
+      creator: ""
     };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ creator: user.displayName });
+      }
+    });
+  }
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };

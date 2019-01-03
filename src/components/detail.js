@@ -47,6 +47,10 @@ class Detail extends Component {
   handleInputChange = value => {
     this.setState({ description: value });
   };
+  joinTribe = () => {
+    // Add attendee to db and to local storage
+    console.log("Joined");
+  };
   render() {
     return (
       <Container className="Detail">
@@ -74,7 +78,7 @@ class Detail extends Component {
               </Aa>
             </Button>
           )}
-          <Button>
+          <Button onClick={this.joinTribe}>
             <Aa href={this.state.url} target="_blank" rel="noopener noreferrer">
               Join this Tribe
             </Aa>
