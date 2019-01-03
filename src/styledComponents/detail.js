@@ -37,6 +37,7 @@ export const ListItem = styled.li`
 `;
 export const Button = styled.button`
   background: #00b5ad;
+  border: 1px solid #00b5ad;
   border-radius: 15px;
   cursor: pointer;
   font-size: 1rem;
