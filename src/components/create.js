@@ -8,9 +8,10 @@ import {
   Button,
   Aa,
   TextArea,
-  ListItem
-} from "../styledComponents/detail";
+  DateTime
+} from "../styledComponents/create";
 import "react-quill/dist/quill.snow.css";
+import "../styledComponents/react-datetime.css";
 
 const formats = [
   "header",
@@ -36,26 +37,48 @@ const modules = {
 class Create extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      title: "",
+      date: "",
+      location: "",
+      url: "",
+      moreUrl: "",
+      description: ""
+    };
   }
-  componentDidMount() {
-    const id = this.props.match.params.id;
-    const event = this.props.event[id];
-    this.setState({ event });
-  }
+  componentDidMount() {}
   handleInputChange = e => {
-    const event = this.state.event;
-    event.description = e.htmlValue;
-    this.setState({ event });
+    this.setState({ [e.target.name]: e.target.value });
   };
   render() {
     return (
       <Container className="Detail">
-        <Title>{this.state.title}</Title>
+        <Title
+          name="title"
+          onChange={this.handleInputChange}
+          placeholder="Event Title"
+          value={this.state.title}
+        />
         <Sidebar>
-          <Sub>{moment(this.state.date).format("ddd M/D/YYYY - h:mm a")}</Sub>
-          <Sub>{this.state.location}</Sub>
-          <Sub>Host: {this.state.creator}</Sub>
+          <DateTime
+            defaultValue={moment()}
+            name="date"
+            onChange={e => this.setState({ date: e._d })}
+            type="datetime-local"
+            value={this.state.date}
+          />
+          <Sub
+            name="location"
+            onChange={this.handleInputChange}
+            placeholder="Location(City, State or Business)"
+            value={this.state.location}
+          />
+          <Sub
+            readOnly
+            name="host"
+            onClick={() => alert("Cannot edit host.")}
+            value={`Host: ${this.state.creator}`}
+          />
           <Button>
             <Aa href={this.state.url} target="_blank" rel="noopener noreferrer">
               Save Event
@@ -65,10 +88,12 @@ class Create extends Component {
         <TextArea
           formats={formats}
           modules={modules}
-          placeholder="Event description goes here. Include all the details you can 
+          placeholder="Event description goes here. Include all the details you can
           to make it easier for others to attend."
           value={this.state.description}
-          onChange={this.handleInputChange}
+          onChange={value => {
+            this.setState({ description: value });
+          }}
         />
       </Container>
     );
