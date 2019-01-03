@@ -3,6 +3,7 @@ import { Container, Header, Title, Body } from "./styledComponents/App";
 import { Route } from "react-router-dom";
 import Summary from "./components/summary";
 import Detail from "./components/detail";
+import Create from "./components/create";
 import firebase from "./Firestore";
 
 class App extends React.Component {
@@ -38,7 +39,9 @@ class App extends React.Component {
     return (
       <Container className="App">
         <Header className="App-header">
+          <a href="/create">+</a>
           <Title>Da Tribe Times</Title>
+          <a href="/">Login</a>
         </Header>
         <Body>
           <br />
@@ -50,6 +53,7 @@ class App extends React.Component {
           <br />
 
           <Route exact path="/" component={this.renderList} />
+          <Route exact path="/create" component={Create} />
           <Route
             path="/event/:id"
             render={props => <Detail {...props} event={this.state.events} />}

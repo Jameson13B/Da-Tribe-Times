@@ -7,9 +7,8 @@ export const Header = styled.header`
   min-height: 3rem;
   width: 100vw;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   color: white;
 `;
 export const Title = styled.h1`
