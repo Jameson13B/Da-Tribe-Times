@@ -53,18 +53,12 @@ class App extends React.Component {
     });
   };
   render() {
-    console.log(this.state.user);
-    console.log(this.state.user);
     return (
       <Container className="App">
         <Header className="App-header">
           <a href="/create">+</a>
           <Title>Da Tribe Times</Title>
-          {this.state.user ? (
-            <button onClick={this.logout}>Logout</button>
-          ) : (
-            <button onClick={this.login}>Login</button>
-          )}
+          null
         </Header>
         <Body>
           <br />
@@ -83,8 +77,26 @@ class App extends React.Component {
           />
         </Body>
         {this.state.user ? (
-          <ProfileImg src={this.state.user.photoURL} alt="user-profile" />
-        ) : null}
+          <ProfileImg
+            src={this.state.user.photoURL}
+            alt="user-profile"
+            onClick={() => {
+              let logout = window.confirm("Are you sure you want to logout?");
+              if (logout) {
+                this.logout();
+              }
+            }}
+          />
+        ) : (
+          <button onClick={this.login}>
+            <img
+              style={{ height: "15px", width: "15px" }}
+              alt=""
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+            />
+            <span>Sign in with Google</span>
+          </button>
+        )}
       </Container>
     );
   }
