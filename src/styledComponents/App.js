@@ -4,7 +4,7 @@ export const Container = styled.div``;
 
 export const Header = styled.header`
   background-color: #a44d00;
-  min-height: 3rem;
+  min-height: 4rem;
   width: 100vw;
   display: flex;
   justify-content: space-between;
@@ -13,6 +13,7 @@ export const Header = styled.header`
 `;
 export const Title = styled.h1`
   font-size: 2rem;
+  margin-left: 15px;
 `;
 
 export const Body = styled.div`

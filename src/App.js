@@ -63,7 +63,7 @@ class App extends React.Component {
       <Container className="App">
         <Header className="App-header">
           <Title>Da Tribe Times</Title>
-          <a href="/create">+</a>
+          {this.state.user ? <a href="/create">Create</a> : null}
         </Header>
         <Body>
           <br />
