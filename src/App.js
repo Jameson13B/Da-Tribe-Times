@@ -7,7 +7,7 @@ import {
   ProfileImg,
   SignInButton
 } from "./styledComponents/app";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import Summary from "./components/summary";
 import Detail from "./components/detail";
 import Create from "./components/create";
@@ -66,7 +66,7 @@ class App extends React.Component {
       <Container className="App">
         <Header className="App-header">
           <Title>Da Tribe Times</Title>
-          {this.state.user ? <a href="/create">Create</a> : null}
+          {this.state.user ? <Link to="/create">Create</Link> : null}
         </Header>
         <Body>
           <br />
