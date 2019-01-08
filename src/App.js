@@ -6,7 +6,7 @@ import {
   Body,
   ProfileImg,
   SignInButton
-} from "./styledComponents/app";
+} from "./styledComponents/App";
 import { Route } from "react-router-dom";
 import Summary from "./components/summary";
 import Detail from "./components/detail";
@@ -121,6 +121,7 @@ class App extends React.Component {
 
 export default App;
 
+// Make sure user is signed in to join tribe
 // When user Joins Tribe add as attendee
 // Form to edit event
 // Bold and Italics dont work on editor
