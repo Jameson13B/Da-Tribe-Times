@@ -38,6 +38,9 @@ class App extends React.Component {
         this.setState({ events });
       });
   }
+  updateEvents = events => {
+    this.setState({ events });
+  };
   renderList = () => {
     return !this.state.events.length ? (
       <p>No Events At This Time</p>
@@ -75,7 +78,17 @@ class App extends React.Component {
           <br />
 
           <Route exact path="/" component={this.renderList} />
-          <Route exact path="/create" component={Create} />
+          <Route
+            exact
+            path="/create"
+            render={props => (
+              <Create
+                {...props}
+                events={this.state.events}
+                updateEvents={this.updateEvents}
+              />
+            )}
+          />
           <Route
             path="/event/:id"
             render={props => <Detail {...props} event={this.state.events} />}
@@ -109,6 +122,5 @@ class App extends React.Component {
 export default App;
 
 // When user Joins Tribe add as attendee
-// Form to create event
 // Form to edit event
 // Bold and Italics dont work on editor

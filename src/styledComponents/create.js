@@ -40,11 +40,6 @@ export const Button = styled.button`
   padding: 15px;
   width: 100%;
 `;
-export const Aa = styled.a`
-  color: white;
-  text-decoration: none;
-  width: 100%;
-`;
 export const TextArea = styled(ReactQuill)`
   font-size: 1rem;
   height: 85%;
@@ -59,4 +54,12 @@ export const DateTime = styled(Datetime)`
     margin-bottom: 10px;
     width: 100%;
   }
+`;
+export const PBlurb = styled.p`
+  line-height: 1.25;
+  margin-bottom: 10px;
+`;
+export const FormImg = styled.img`
+  border-radius: 10px;
+  width: 100%;
 `;
