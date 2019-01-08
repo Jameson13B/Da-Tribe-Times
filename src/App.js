@@ -79,7 +79,6 @@ class App extends React.Component {
 
           <Route exact path="/" component={this.renderList} />
           <Route
-            exact
             path="/create"
             render={props => (
               <Create
