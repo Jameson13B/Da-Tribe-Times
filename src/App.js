@@ -6,7 +6,7 @@ import {
   Body,
   ProfileImg,
   SignInButton
-} from "./styledComponents/App";
+} from "./styledComponents/app";
 import { Route } from "react-router-dom";
 import Summary from "./components/summary";
 import Detail from "./components/detail";
