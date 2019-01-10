@@ -57,7 +57,29 @@ class Detail extends Component {
   };
   joinTribe = () => {
     // Add attendee to db and to local storage
-    console.log("Joined");
+    // Update attendees array
+    const attendees = this.state.attendees || [];
+    const This = this;
+    if (attendees.includes(this.state.user.displayName)) {
+      alert("Already joined.");
+    } else {
+      attendees.push(this.state.user.displayName);
+      // Update database
+      const db = firebase.firestore();
+      db.collection("events")
+        .doc(this.state.id)
+        .update({
+          attendees: attendees
+        })
+        .then(function() {
+          console.log("Event Updated");
+          This.setState({ attendees });
+        })
+        .catch(function(error) {
+          console.error("Error writing document: ", error);
+          alert("Error updating event. Please try again.");
+        });
+    }
   };
   render() {
     return (
