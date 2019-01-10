@@ -10,6 +10,7 @@ import {
   TextArea,
   ListItem
 } from "../styledComponents/detail";
+import firebase, { auth } from "../Firestore";
 import "react-quill/dist/quill.snow.css";
 
 const formats = [
@@ -43,6 +44,13 @@ class Detail extends Component {
     const event = this.props.event[id];
     console.log("Event: ", event);
     this.setState(event);
+  }
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      }
+    });
   }
   handleInputChange = value => {
     this.setState({ description: value });
@@ -78,11 +86,21 @@ class Detail extends Component {
               </Aa>
             </Button>
           )}
-          <Button onClick={this.joinTribe}>
-            <Aa href={this.state.url} target="_blank" rel="noopener noreferrer">
-              Join this Tribe
-            </Aa>
-          </Button>
+          {this.state.user ? (
+            <Button onClick={this.joinTribe}>
+              <Aa
+                href={this.state.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join this Tribe
+              </Aa>
+            </Button>
+          ) : (
+            <Button onClick={this.joinTribe} style={{ cursor: "not-allowed" }}>
+              Sign In to Join
+            </Button>
+          )}
         </Sidebar>
         <TextArea
           readOnly

@@ -33,7 +33,9 @@ class App extends React.Component {
       .then(res => {
         let events = [];
         res.forEach(doc => {
-          events.push(doc.data());
+          let event = doc.data();
+          event.id = doc.id;
+          events.push(event);
         });
         this.setState({ events });
       });
@@ -120,7 +122,5 @@ class App extends React.Component {
 
 export default App;
 
-// Make sure user is signed in to join tribe
-// When user Joins Tribe add as attendee
 // Form to edit event
 // Bold and Italics dont work on editor
