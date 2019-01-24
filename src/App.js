@@ -124,3 +124,4 @@ export default App;
 
 // Form to edit event
 // Bold and Italics dont work on editor
+// Format create button
